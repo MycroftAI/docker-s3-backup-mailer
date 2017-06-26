@@ -44,7 +44,7 @@ function parse_host_log_file {
 	local count=0
 	echo ${host_log_list}
 	#cat ${logfile}
-	echo "[Hostname]: " ${host}
+	echo "[HOSTNAME]: " ${host}
 	while IFS='' read -r line || [[ -n ${line} ]];
 	do
 		log_machine=$(echo ${line} | awk '{ print $1 }')
@@ -64,11 +64,11 @@ function parse_host_log_file {
 			echo ""
 		else
 			echo ""
-                        echo "[OPERATION] number: " ${count} " at " ${human_time}
+                        echo "[OPERATION] [NUMBER]: "${count}" at " ${human_time}
 			echo "[SUCCESS]  ****!!   Backup was succesful    !!****"
 			echo ""
 		fi
-		count=${count+1}
+		count=$[count+1]
 
 	done < ${logfile}
 }
